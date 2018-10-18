@@ -267,7 +267,7 @@ static int key_import_wkd(alpm_handle_t *handle, const char *email)
 	CHECK_ERR();
 
 	mode = gpgme_get_keylist_mode(ctx);
-	mode |= GPGME_KEYLIST_MODE_LOCATE;
+	mode |= (GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_EXTERN);  /* GPGME_KEYLIST_MODE_LOCATE is an alias for below. */
 	gpg_err = gpgme_set_keylist_mode(ctx, mode);
 	CHECK_ERR();
 
