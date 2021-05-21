@@ -95,22 +95,22 @@ tap_runtest 2.0a   2.0.a  -1
 tap_runtest 2___a  2_a     1
 
 # epoch included version comparisons
-tap_runtest 0:1.0    0:1.0   0
-tap_runtest 0:1.0    0:1.1  -1
-tap_runtest 1:1.0    0:1.0   1
-tap_runtest 1:1.0    0:1.1   1
-tap_runtest 1:1.0    2:1.1  -1
+tap_runtest 0~1.0    0~1.0   0
+tap_runtest 0~1.0    0~1.1  -1
+tap_runtest 1~1.0    0~1.0   1
+tap_runtest 1~1.0    0~1.1   1
+tap_runtest 1~1.0    2~1.1  -1
 
 # epoch + sometimes present pkgrel
-tap_runtest 1:1.0    0:1.0-1  1
-tap_runtest 1:1.0-1  0:1.1-1  1
+tap_runtest 1~1.0    0~1.0-1  1
+tap_runtest 1~1.0-1  0~1.1-1  1
 
 # epoch included on one version
-tap_runtest 0:1.0    1.0   0
-tap_runtest 0:1.0    1.1  -1
-tap_runtest 0:1.1    1.0   1
-tap_runtest 1:1.0    1.0   1
-tap_runtest 1:1.0    1.1   1
-tap_runtest 1:1.1    1.1   1
+tap_runtest 0~1.0    1.0   0
+tap_runtest 0~1.0    1.1  -1
+tap_runtest 0~1.1    1.0   1
+tap_runtest 1~1.0    1.0   1
+tap_runtest 1~1.0    1.1   1
+tap_runtest 1~1.1    1.1   1
 
 tap_finish
