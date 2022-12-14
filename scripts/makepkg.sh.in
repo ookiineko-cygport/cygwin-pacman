@@ -1207,7 +1207,7 @@ fi
 
 pkgbase=${pkgbase:-${pkgname[0]}}
 
-# MSYS2: lint_pkgbuild is very slow with cygwin bash, so make it opt-in
+# CYGWIN: lint_pkgbuild is very slow with cygwin bash, so make it opt-in
 if (( MAKEPKG_LINT_PKGBUILD )); then
 	# check the PKGBUILD for some basic requirements
 	lint_pkgbuild || exit $E_PKGBUILD_ERROR
@@ -1371,8 +1371,8 @@ mkdir -p "$srcdir"
 chmod a-s "$srcdir"
 cd_safe "$srcdir"
 
-export MINGW_CHOST MINGW_PREFIX MINGW_PACKAGE_PREFIX
-export DXSDK_DIR ACLOCAL_PATH PKG_CONFIG_PATH
+# export MINGW_CHOST MINGW_PREFIX MINGW_PACKAGE_PREFIX
+export ACLOCAL_PATH PKG_CONFIG_PATH
 
 if (( !REPKG )); then
 	if (( NOEXTRACT && ! VERIFYSOURCE )); then

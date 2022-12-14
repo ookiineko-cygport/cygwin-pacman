@@ -521,8 +521,8 @@ alpm_list_t *_alpm_db_find_fileconflicts(alpm_handle_t *handle,
 
 			_alpm_log(handle, ALPM_LOG_DEBUG, "checking possible conflict: %s\n", path);
 
-#ifdef __MSYS__
-			/* In case a file "foo.exe" gets renamed to "foo" the msys2 .exe
+#ifdef __CYGWIN__
+			/* In case a file "foo.exe" gets renamed to "foo" the cygwin .exe
 			 * interpolation makes pacman think an untracker file is replaced.
 			 * In case foo and foo.exe are the same file and foo.exe existed
 			 * in the old package version we can be sure it's handled by the
@@ -539,7 +539,7 @@ alpm_list_t *_alpm_db_find_fileconflicts(alpm_handle_t *handle,
 
 					if(same_file && old_contains_exe) {
 						_alpm_log(handle, ALPM_LOG_DEBUG,
-								"MSYS2 special case: Found %s which is the same file and included in the old package\n",
+								"CYGWIN special case: Found %s which is the same file and included in the old package\n",
 								path_exe);
 						continue;
 					}

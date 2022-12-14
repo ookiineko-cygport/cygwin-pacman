@@ -1,4 +1,4 @@
-if [[ -n "$MSYSTEM" ]]; then
+if [[ -n "$MSYSTEM" || "$OSTYPE" = "cygwin" ]]; then
   readonly -a UTILS_NAME=('bsdtar'
                           'bzip2'
                           'bzr'

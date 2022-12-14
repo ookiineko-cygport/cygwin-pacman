@@ -166,7 +166,7 @@ get_pkgbuild_all_split_attributes() {
 ##
 get_full_version() {
 	if (( epoch > 0 )); then
-		if [[ -n $MSYSTEM ]]; then
+		if [[ "$OSTYPE" = "cygwin" ]]; then
 			printf "%s\n" "${epoch}~${pkgver}-${pkgrel}"
 		else
 			printf "%s\n" "$epoch:$pkgver-$pkgrel"

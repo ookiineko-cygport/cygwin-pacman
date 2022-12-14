@@ -50,7 +50,7 @@ static void parseEVR(char *evr, const char **ep, const char **vp,
 	/* se points to version terminator */
 	se = strrchr(s, '-');
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	if(*s == '~') {
 #else
 	if(*s == ':') {

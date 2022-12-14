@@ -38,7 +38,7 @@ warn_build_references() {
 		fi
 	done
 
-	# Check for Windows-style MSYS2 root path
+	# Check for Windows-style CYGWIN root path
 	if find "${pkgdir}" -type f -print0 | xargs -0 grep -iFqI "$(cygpath -m /)" ; then
 		warning "$(gettext "Package contains reference to %s")" "\$(cygpath -m /)"
 	fi

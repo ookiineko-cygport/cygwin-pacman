@@ -198,7 +198,7 @@ static alpm_list_t *check_replacers(alpm_handle_t *handle, alpm_pkg_t *lpkg,
 }
 
 /** Search for packages to upgrade and add them to the transaction. */
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 static
 int SYMEXPORT do_alpm_sync_sysupgrade(alpm_handle_t *handle, int enable_downgrade, int core_update)
 #else
@@ -217,7 +217,7 @@ int SYMEXPORT alpm_sync_sysupgrade(alpm_handle_t *handle, int enable_downgrade)
 	for(i = _alpm_db_get_pkgcache(handle->db_local); i; i = i->next) {
 		alpm_pkg_t *lpkg = i->data;
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 		/* Skip regular packages in core update, and core packages in regular update */
 		if(core_update != alpm_pkg_is_core_package(lpkg)) {
 			continue;
@@ -265,7 +265,7 @@ int SYMEXPORT alpm_sync_sysupgrade(alpm_handle_t *handle, int enable_downgrade)
 	return 0;
 }
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 int SYMEXPORT alpm_sync_sysupgrade(alpm_handle_t *handle, int enable_downgrade)
 {
 	return do_alpm_sync_sysupgrade(handle, enable_downgrade, 0);

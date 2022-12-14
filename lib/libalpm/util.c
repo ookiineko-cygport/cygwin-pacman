@@ -30,7 +30,7 @@
 #include <errno.h>
 #include <limits.h>
 #include <sys/wait.h>
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 #include <sys/socket.h>
 #endif
 #include <fnmatch.h>
@@ -485,7 +485,7 @@ static int _alpm_chroot_write_to_child(alpm_handle_t *handle, int fd,
 		_alpm_cb_io out_cb, void *cb_ctx)
 {
 	ssize_t nwrite;
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	struct sigaction newaction, oldaction;
 #endif
 
@@ -497,7 +497,7 @@ static int _alpm_chroot_write_to_child(alpm_handle_t *handle, int fd,
 		}
 	}
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	/* ignore SIGPIPE in case the pipe has been closed */
 	newaction.sa_handler = SIG_IGN;
 	sigemptyset(&newaction.sa_mask);
@@ -648,7 +648,7 @@ int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
 	/* Flush open fds before fork() to avoid cloning buffers */
 	fflush(NULL);
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	if(pipe(child2parent_pipefd) == -1) {
 #else
 	if(socketpair(AF_UNIX, SOCK_STREAM, 0, child2parent_pipefd) == -1) {
@@ -658,7 +658,7 @@ int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
 		goto cleanup;
 	}
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	if(pipe(parent2child_pipefd) == -1) {
 #else
 	if(socketpair(AF_UNIX, SOCK_STREAM, 0, parent2child_pipefd) == -1) {
@@ -822,7 +822,7 @@ cleanup:
 	return retval;
 }
 
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 /** Run ldconfig in a chroot.
  * @param handle the context handle
  * @return 0 on success, 1 on error

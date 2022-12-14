@@ -1086,7 +1086,7 @@ static void cl_to_log(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 	int ret = 0;
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 	uid_t myuid = getuid();
 #endif
 
@@ -1132,7 +1132,7 @@ int main(int argc, char *argv[])
 		cleanup(ret);
 	}
 
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 	/* check if we have sufficient permission for the requested operation */
 	if(myuid > 0 && needs_root()) {
 		pm_printf(ALPM_LOG_ERROR, _("you cannot perform this operation unless you are root.\n"));
@@ -1156,7 +1156,7 @@ int main(int argc, char *argv[])
 				if(line[nread - 1] == '\n') {
 					/* remove trailing newline */
 					line[nread - 1] = '\0';
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 					if (line[nread - 2] == '\r') {
 						/* remove trailing carriage returns */
 						line[nread - 2] = '\0';

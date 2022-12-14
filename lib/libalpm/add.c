@@ -266,7 +266,7 @@ static int extract_single_file(alpm_handle_t *handle, struct archive *archive,
 					"filesystem: %o  package: %o\n", filename, lsbuf.st_mode & mask,
 					entrymode & mask);
 		}
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 
 #if 0
 		/* Disable this warning until our user management in packages has improved.
@@ -657,7 +657,7 @@ static int commit_single_pkg(alpm_handle_t *handle, alpm_pkg_t *newpkg,
 int _alpm_upgrade_packages(alpm_handle_t *handle)
 {
 	size_t pkg_count, pkg_current;
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 	int skip_ldconfig = 0;
 #endif
 	int ret = 0;
@@ -683,7 +683,7 @@ int _alpm_upgrade_packages(alpm_handle_t *handle)
 			/* something screwed up on the commit, abort the trans */
 			trans->state = STATE_INTERRUPTED;
 			handle->pm_errno = ALPM_ERR_TRANS_ABORT;
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 			/* running ldconfig at this point could possibly screw system */
 			skip_ldconfig = 1;
 #endif
@@ -693,7 +693,7 @@ int _alpm_upgrade_packages(alpm_handle_t *handle)
 		pkg_current++;
 	}
 
-#ifndef __MSYS__
+#ifndef __CYGWIN__
 	if(!skip_ldconfig) {
 		/* run ldconfig if it exists */
 		_alpm_ldconfig(handle);

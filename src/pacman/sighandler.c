@@ -21,7 +21,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 #include <termios.h>
 #endif
 
@@ -57,7 +57,7 @@ static void _reset_handler(int signum)
  */
 static void soft_interrupt_handler(int signum)
 {
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	struct termios term;
 #endif
 
@@ -76,7 +76,7 @@ static void soft_interrupt_handler(int signum)
 		return;
 	}
 	alpm_unlock(config->handle);
-#ifdef __MSYS__
+#ifdef __CYGWIN__
 	/* restore input printing possibly disabled by core update */
 	if(tcgetattr(STDIN_FILENO, &term) == 0) {
 		term.c_lflag |= ECHO;

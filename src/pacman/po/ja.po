@@ -1500,22 +1500,22 @@ msgstr "コアシステムの更新を開始...\n"
 
 #: src/pacman/sync.c:791
 #, c-format
-msgid "terminate other MSYS2 programs before proceeding\n"
-msgstr "続行する前に他の MSYS2 プログラムを終了してください\n"
+msgid "terminate other CYGWIN programs before proceeding\n"
+msgstr "続行する前に他の CYGWIN プログラムを終了してください\n"
 
 #: src/pacman/sync.c:796
 #, c-format
 msgid ""
-"To complete this update all MSYS2 processes including this terminal will be "
+"To complete this update all CYGWIN processes including this terminal will be "
 "closed. Confirm to proceed"
 msgstr ""
-"更新を完了するために、この端末を含む全ての MSYS2 プロセスが閉じられます。続行"
+"更新を完了するために、この端末を含む全ての CYGWIN プロセスが閉じられます。続行"
 "しますか？"
 
 #: src/pacman/sync.c:800
 #, c-format
-msgid "terminating MSYS2 processes failed\n"
-msgstr "MSYS2 プロセスの終了に失敗しました\n"
+msgid "terminating CYGWIN processes failed\n"
+msgstr "CYGWIN プロセスの終了に失敗しました\n"
 
 #: src/pacman/sync.c:717
 #, c-format
